@@ -12,7 +12,7 @@ function CodeConverter() {
   const handleConvertCode = async () => {
     try {
       const response = await axios.post(
-        `http://localhost:8080/api1/convert-code`,
+        `http://localhost:8080/api1/convert`,
         {
           code,
           sourceLanguage,
