@@ -10,6 +10,8 @@ import { context } from './context-api/Context'
 import ShayariGenerator from "./Components/ShayariGenerator";
 import Navbar from "./Components/Navbar";
 import Generatequote from "./Components/Generatequote";
+import LoginCard from "./Components/LoginCard";
+import SignupCard from "./Components/SignupCard";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -55,9 +57,9 @@ export default function App() {
   return (
     <>
     <Navbar/>
-      {/* {isLogin && !user ? <LoginCard /> : null}
-      {isSignUp && !user ? <SignupCard /> : null} */}
-      {!0 ? (
+      {isLogin && !user ? <LoginCard /> : null} 
+      {isSignUp && !user ? <SignupCard /> : null}
+      {user ? (
         <Box sx={{ width: "100%" }}>
           <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
             <Tabs

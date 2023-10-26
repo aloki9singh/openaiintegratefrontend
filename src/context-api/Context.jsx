@@ -2,7 +2,7 @@ import { createContext, useState } from "react";
 
 export const context=createContext();
 export const ContextProvider=({children})=>{
-    const [user,setUser]=useState(null);
+    const [user,setUser]=useState("");
     const [isSignUp,setSignUp]=useState(true);
     const [isLogin,setIsLogin]=useState(false);
     const updateSignUp=(bool)=>{

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import '../CSS/generatequote.css'
 
 function Generatequote() {
   const [keyword, setKeyword] = useState('');
@@ -7,7 +8,7 @@ function Generatequote() {
 
   const generateQuotes = async () => {
     try {
-      const response = await axios.get(`/quote?keyword=${keyword}`);
+      const response = await axios.get(`http://localhost:8080/api1/quote?keyword=${keyword}`);
       setQuotes(response.data);
     } catch (error) {
       console.error('Error:', error);

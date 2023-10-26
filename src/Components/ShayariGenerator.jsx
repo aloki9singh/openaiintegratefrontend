@@ -1,57 +1,55 @@
-import * as React from "react";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
-import { Fab, TextField } from "@mui/material";
-import { handleGenerate } from "../lib/Functions";
-
+import React, { useState } from "react";
+import axios from "axios";
+import "../CSS/shayari-generator.css"
 export default function ShayariGenerator() {
-  const [content_type, setcontent] = React.useState("shayari");
-  const [user_query, setuser_query] = React.useState("shayari");
+  const [content_type, setContentType] = useState("shayari");
+  const [user_query, setUserQuery] = useState("");
+  const [shayariEn, setShayariEn] = useState("");
+  const [shayariHi, setShayariHi] = useState("");
+  const [error, setError] = useState(null);
 
-  const handleChange = (event) => {
-    setcontent(event.target.value);
+  const handleGenerate = async () => {
+    try {
+      const response = await axios.get(`http://localhost:8080/api1/shayarigenerator`, {
+        params: { content_type, user_query },
+      });
+
+      setShayariEn(response.data.shayariEn);
+      setShayariHi(response.data.shayariHi);
+      setError(null);
+    } catch (error) {
+      console.error("Error:", error);
+      setError("An error occurred. Please try again.");
+      setShayariEn("");
+      setShayariHi("");
+    }
   };
- 
+
   return (
-    <>
-      <div style={{ display: "flex" }}>
-        <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-          <InputLabel id="demo-select-small-label">content</InputLabel>
-          <Select
-            labelId="demo-select-small-label"
-            id="demo-select-small"
-            value={content_type}
-            label="content"
-            onChange={handleChange}
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value={"shayari"}>Shayari</MenuItem>
-            <MenuItem value={"jokes"}>Jokes</MenuItem>
-            <MenuItem value={"short-stories"}>Short-Stories</MenuItem>
-          </Select>
-        </FormControl>
-
-        <div>
-          <TextField
-            id="standard-basic"
-            label="Standard"
-            variant="standard"
-            onChange={(e) => setuser_query(e.target.value)}
-          />
-          <Fab variant="extended" onClick={()=>handleGenerate(content_type, user_query)}>Generate {content_type}</Fab>
-        </div>
+    <div className="container">
+      <h1>{content_type.toUpperCase()} Generator</h1>
+      <div>
+        <select
+          value={content_type}
+          onChange={(e) => setContentType(e.target.value)}
+        >
+          <option value="shayari">Shayari</option>
+          <option value="jokes">Jokes</option>
+          <option value="short-stories">Short Stories</option>
+        </select>
+        <input
+          type="text"
+          placeholder="Enter a keyword"
+          value={user_query}
+          onChange={(e) => setUserQuery(e.target.value)}
+        />
+        <button onClick={handleGenerate}>Generate {content_type}</button>
       </div>
-
-      <div style={
-        {display:"flex"}
-      } >
-        <div></div>
-        <div></div>
+      <div>
+        {error && <p>{error}</p>}
+        {shayariEn && <p>English {content_type}: {shayariEn}</p>}
+        {shayariHi && <p>Hindi {content_type}: {shayariHi}</p>}
       </div>
-    </>
+    </div>
   );
 }

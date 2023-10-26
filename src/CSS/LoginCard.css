@@ -1,0 +1,87 @@
+/* LoginCard.css */
+.login-container {
+    background: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+  
+  .card {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+  }
+  
+  .card h1 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333333;
+    margin-bottom: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-label {
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    color: #555555;
+    margin-bottom: 8px;
+  }
+  
+  .form-input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e4e4e4;
+    border-radius: 6px;
+    outline: none;
+    font-size: 16px;
+    color: #333333;
+  }
+  
+  .form-input::placeholder {
+    color: #999999;
+  }
+  
+  .form-input:focus {
+    border: 2px solid #0073e6;
+    box-shadow: 0 0 5px rgba(0, 115, 230, 0.3);
+  }
+  
+  .button {
+    background-color: #0073e6;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 16px 32px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s;
+  }
+  
+  .button:hover {
+    background-color: #0059b3;
+  }
+  
+  .text-gray {
+    color: #555555;
+    font-size: 16px;
+    margin-top: 12px;
+  }
+  
+  .text-blue {
+    color: #ffff;
+    text-decoration: none;
+    cursor: pointer;
+    
+  }
+  
